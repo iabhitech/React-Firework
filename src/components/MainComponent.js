@@ -1,13 +1,9 @@
-import react, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import AllVideosComponent from "./AllVideosComponent";
 import UploadVideoComponent from "./UploadVideoComponent";
-class Main extends Component {
-  componentDidMount() {}
-
-  render() {
-    const videos = [
+const Main = () => {
+  const videos = [
       {
         'id':1,
         'name':'video1',
@@ -21,16 +17,21 @@ class Main extends Component {
         'link':'#'
       },
     ];
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={()=><AllVideosComponent videos={videos}/>} />
-          <Route exact path="/upload" component={UploadVideoComponent} />
-          <Redirect to="/" />
-        </Switch>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" >
+          <AllVideosComponent/>
+        </Route>
+        <Route exact path="/upload">
+        <UploadVideoComponent/>
+        </Route>
+        <Route exact path="/">
+        <Redirect to="/" />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 export default Main;
